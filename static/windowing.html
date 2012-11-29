@@ -1,0 +1,63 @@
+<!DOCTEST html>
+<html>
+  <head>
+    <title>Windowing example</title>
+    <script src="jquery-1.8.3.min.js"></script>
+    <script src="windowing.js"></script>
+    <link rel="stylesheet" href="windowing.css">
+    <script>
+
+$(function () {
+  var count = 1;
+  var win = PaneWindow('#outer-window');
+  $(".make-pane").bind("click", function () {
+    var pos = $(this).attr("data-position");
+    var paneSet = win[pos]();
+    var pane = paneSet.createPane();
+    pane.title().text("Pane " + (count++));
+    pane.content().html("<p>Something<br><br>and then</p>");
+  });
+});
+
+    </script>
+  </head>
+  <body>
+
+<div id="page">
+
+<table id="outer-window" class="pane-window">
+  <tr>
+    <td class="pane-left" style="width: 50%">
+      <table class="pane-set">
+        <tr>
+          <td class="pane-title-cell" id="control-pane" data-start-pinned="1">
+            <div class="pane-title">Control pane</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="pane-content-cell">
+            <p>Hi!  This is a paned windowing demo.</p>
+
+            <p>
+              <button class="make-pane" data-position="left">
+                Create pane on left
+              </button>
+              <button class="make-pane" data-position="right">
+                Create pane on right
+              </button>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td class="pane-right" style="width: 50%">
+      <table class="pane-set">
+      </table>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+  </body>
+</html>

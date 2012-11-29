@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Test Stuff</title>
+    <script src="doctestjs/doctest.js"></script>
+    <link href="doctestjs/doctest.css" rel="stylesheet" type="text/css">
+    <script src="../mixin-events.js"></script>
+    <script src="../client.js"></script>
+    <script src="../shellparser.js"></script>
+    <script src="../path.js"></script>
+  </head>
+  <body class="autodoctest">
+
+<p>Tests:
+  <a href="?test-name=test_shellparser.js">test_shellparser</a>
+  <a href="?test-name=test_path.js">test_path</a>
+  <a href="?test-name=test_client.js">test_client</a>
+</p>
+
+<p>
+This setup code is run with all tests:
+
+<pre class="commenttest expand-on-failure">
+if (doctest.params["test-name"]) {
+  jshint("../" + doctest.params["test-name"].replace(/^test_/, ""));
+} else {
+  print("Script passed: dummy");
+}
+// => Script passed: ...
+</pre>
+
+</p>
+
+<p>
+
+<h3>The Test</h3>
+
+  <pre class="commenttest" data-href-pattern="./{test-name:^[\w\-\.]+$}"></pre>
+
+</body></html>

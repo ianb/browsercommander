@@ -1,0 +1,23 @@
+.browser-files {
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+}
+
+.browser-filename {
+  cursor: pointer;
+  font-family: monospace;
+}
+
+.browser-hidden-container {
+  border: 1px solid #999;
+}
+
+.browser-hidden-title {
+  font-size: 80%;
+  cursor: pointer;
+}
+
+.browser-directory {
+  color: #088;
+}

@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  height: 100%;
+}
+
+#page {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+#outer-window {
+  height: 100%;
+  width: 100%;
+}
+
+.pane-window {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+}
+
+.pane-set {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+.pane-title-cell {
+  height: 1em;
+  max-height: 1em;
+  background-color: #009;
+  border-top: solid 2px #004;
+  border-left: solid 2px #004;
+  border-right: solid 2px #004;
+  color: #fff;
+  padding: 3px;
+}
+
+.pane-controls {
+  float: right;
+}
+
+.pane-control {
+  cursor: pointer;
+  margin-right: 0.2em;
+}
+
+.pane-content-cell {
+  /*padding: 2px 0.2em 2px 0.2em;*/
+  vertical-align: top;
+  overflow: auto;
+  overflow-y: auto;
+}
+
+.pane-content {
+  height: 100%;
+  overflow: auto;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RUN!</title>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+    <script src="./jquery-1.8.3.min.js"></script>
+    <script src="mixin-events.js"></script>
+    <script src="client.js"></script>
+    <script src="console.js"></script>
+    <script src="shellparser.js"></script>
+    <script src="path.js"></script>
+    <link rel="stylesheet" href="console.css">
+    <link rel="icon" type="image/png" href="/prompt.png">
+    <link rel="stylesheet" href="windowing.css">
+    <link rel="stylesheet" href="browser.css">
+    <script src="client.js"></script>
+    <script src="windowing.js"></script>
+    <script src="editor.js"></script>
+    <script src="browser.js"></script>
+    <script src="codemirror-2.36/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="codemirror-2.36/lib/codemirror.css">
+    <script src="codemirror-2.36/mode/javascript/javascript.js"></script>
+    <script src="codemirror-2.36/mode/python/python.js"></script>
+    <script src="codemirror-2.36/mode/coffeescript/coffeescript.js"></script>
+    <script src="codemirror-2.36/mode/css/css.js"></script>
+    <script src="codemirror-2.36/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="codemirror-2.36/mode/shell/shell.js"></script>
+    <script src="codemirror-2.36/mode/yaml/yaml.js"></script>
+
+    <script>
+
+      var connection = new Connection();
+      var win;
+      $(function () {
+        win = PaneWindow("#outer-window");
+        $(".make-console").click(function () {
+          var side = $(this).attr("data-position");
+          var pane = win[side]().createPane();
+          var console = Console.create(pane);
+          console.focus();
+        });
+        Console.prototype.commands.edit = function (finish, args, options) {
+          finish();
+          var path = pathjoin(options.cwd, args[0]);
+          var paneSet = PaneSet(this.el.closest(".pane-set"));
+          var pane = paneSet.createPane();
+          var editor = new Editor(pane, path);
+        };
+        Console.prototype.commands.dir = function (finish, args, options) {
+          var path = pathjoin(options.cwd, args[0] || '');
+          var paneSet = PaneSet(this.el.closest(".pane-set"));
+          var pane = paneSet.createPane();
+          var browser = new Browser(pane, path);
+          finish();
+        };
+        $(".make-console[data-position=right]").click();
+      });
+
+    </script>
+  </head>
+  <body>
+
+<div id="page">
+
+<table id="outer-window" class="pane-window">
+  <tr>
+    <td class="pane-left" style="width: 40%">
+      <table class="pane-set">
+        <tr>
+          <td class="pane-title-cell" id="control-pane" data-start-pinned="1">
+            <div class="pane-title">Control pane</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="pane-content-cell" data-preferred-height="2em">
+            <div class="pane-content">
+              <div>
+                <button class="make-console" data-position="left">
+                  &#x2190; console
+                </button>
+                <button class="make-console" data-position="right">
+                  console &#x2192;
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td class="pane-right" style="width: 60%">
+      <table class="pane-set">
+      </table>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+  </body>
+</html>
